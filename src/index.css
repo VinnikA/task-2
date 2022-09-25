@@ -19,7 +19,6 @@ body {
   height: 100vh;
   margin: 0 auto;
   padding: 0 16px;
-  border: 1px solid var(--grey-dark);
 }
 .section {
   margin: 48px 0 0 0;
@@ -83,7 +82,7 @@ body {
   grid-template-columns: 2fr 1fr 1fr;
 }
 /* button */
-.btn-container {
+.btn-block {
   margin: 8px 0;
   display: flex;
   justify-content: end;
