@@ -21,6 +21,13 @@ export const categoryIcons = {
   ['Quote']: 'quote-right',
 };
 
+export const categories = [
+  'Task',
+  'Random Thought',
+  'Idea',
+  'Quote'
+]
+
 export const notes: noteType[] = [
   {
     id: 1,

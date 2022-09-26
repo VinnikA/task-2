@@ -1,4 +1,5 @@
 import { topTableTitles, bottomTableTitles } from "../../../constants";
+import IconBtnBlock from "../../UI/IconBtnBlock";
 
 type TableHeaderProps = {
   position: string
@@ -6,29 +7,21 @@ type TableHeaderProps = {
 
 const TableHeader: React.FC<TableHeaderProps> = ({position}) => {
   const styleMod = `table__header table__header_${position}`;
-  let notes = position === 'top' ? topTableTitles : bottomTableTitles;
+  const notes = position === 'top' ? topTableTitles : bottomTableTitles;
+  const headerButtons = [
+    {name: 'archive'},
+    {name: 'remove'}
+  ];
 
   return (
     <div 
       className={styleMod}>
         {notes.map(item => <div key={item} className="table__title">{item}</div>)}
+        {position === 'top' && <div className="table__title">
+          <IconBtnBlock namesAndActions={headerButtons}/>
+        </div>}
     </div>
   )
 }
 
 export default TableHeader;
-
-// function tableHeader(state, position) {
-//   const styleMod = `table__header_${position}`;
-//   const header = element('div', `table__header ${styleMod}`);
-//   for (const item of state) {
-//     const el = element('div', 'table__title', item);
-//     header.append(el);
-//   }
-//   if(position === 'top') {
-//     const block = element('div', 'table__title table__title_last', '');
-//     block.append(iconBlock());
-//     header.append(block);
-//   }
-//   return header;
-// };

@@ -1,21 +1,19 @@
 import { BtnBlockProps } from "../../types";
-import Btn from "./Btn";
+import IconBtn from "./IconBtn";
 
-const BtnBlock: React.FC<BtnBlockProps> = ({namesAndActions}) => {
-
+const IconBtnBlock: React.FC<BtnBlockProps> = ({namesAndActions}) => {
   return (
-    <div className="btn-block">
+    <div className="icon-btn-block">
       {
         namesAndActions.map(item => 
-          <Btn 
+          <IconBtn 
             key={item.name} 
             name={item.name} 
             action={item.action} 
-          />
-        )
+          />)
       }
     </div>
   )
 }
 
-export default BtnBlock;
+export default IconBtnBlock;

@@ -1,11 +1,11 @@
-import { FaBeer } from 'react-icons/fa';
+import { NameAndActionProps } from "../../types"
 
-const Btn: React.FC = () => {
+const Btn: React.FC<NameAndActionProps> = ({name, action}) => {
   return (
-    <button className="btn">
-      <FaBeer />
+    <button className="btn" onClick={action}>
+      {name}
     </button> 
   )
 }
 
-export default Btn
+export default Btn;
