@@ -43,8 +43,10 @@ export function getDates(start: string, end: string) {
 
 const addZerro = (str: string) => str.length === 1 ? '0' + str : str;
 
-export function getDate(strDate: string) {
-  return strDate.split('/').map(el => addZerro(el)).reverse().join('-');
+export function getDate(strDate: string | undefined) {
+  if(strDate) {
+    return strDate.split('/').map(el => addZerro(el)).reverse().join('-');
+  }
 };
 
 export const getString = (content: string | number | boolean | string[]) => {

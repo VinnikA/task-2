@@ -1,29 +1,38 @@
 import { useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { hideEditForm, addNote } from "../../store/noteSlice";
+import { hideEditForm, editNote } from "../../store/noteSlice";
 import { FormData } from "../../types";
-import { timeMark, getDates } from "../../helpers";
+import { getDates, getDate } from "../../helpers";
 import { categories } from "../../constants";
 import BtnBlock from "../UI/BtnBlock";
 
 const EditForms = () => {
   const dispatch = useAppDispatch();
-  const notes = useAppSelector(state => state.notes.list);
-  const { register, formState: {errors}, handleSubmit } = useForm<FormData>();
+  const nodeId = useAppSelector(state => state.notes.editetNoteId);
+  const note = useAppSelector(state => state.notes.list.find(item => item.id === nodeId));
+  const { 
+    register, 
+    formState: {errors}, 
+    handleSubmit 
+  } = useForm<FormData>({
+    defaultValues: {
+      noteCategory: note?.category,
+      noteName: note?.name,
+      noteContent: note?.content,
+      noteStart: getDate(note?.dates[0]),
+      noteEnd: getDate(note?.dates[1])
+    }
+  });
 
   const onSubmit = handleSubmit(data => {
-    dispatch(hideEditForm());
-    const newNote = {
-      id: Date.now(),
+    const editedNote = {
       category: data.noteCategory,
       name: data.noteName,
       content: data.noteContent,
-      created: timeMark(),
-      dates: getDates(data.noteStart, data.noteEnd),
-      archived: false
+      dates: getDates(data.noteStart, data.noteEnd)
     };
-    dispatch(addNote(newNote));
-    console.log(newNote);
+    dispatch(editNote(editedNote));
+    dispatch(hideEditForm());
   });
 
   const onCancel = (e?: React.SyntheticEvent) => {
@@ -43,7 +52,10 @@ const EditForms = () => {
       <form className="form" onSubmit={onSubmit} >
         <h2 className="form__heading">Edit the note</h2>
         <label className="form__label">Category: 
-          <select className="form__input" {...register('noteCategory')}>
+          <select 
+            className="form__input" 
+            {...register('noteCategory')} 
+          >
             {categories.map(item => <option key={item} value={item}>{item}</option>)}
           </select>
         </label>

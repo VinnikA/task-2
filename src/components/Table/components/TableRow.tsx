@@ -1,5 +1,5 @@
 import { TableRowType } from "../../../types";
-import { useAppSelector, useAppDispatch } from "../../../hooks";
+import { useAppDispatch } from "../../../hooks";
 import { topTableTitles, bottomTableTitles } from "../../../constants";
 import TableItem from "./TableItem";
 import Icon from "../../UI/Icon";

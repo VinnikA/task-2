@@ -61,4 +61,11 @@ export type FormData = {
   noteContent: string,
   noteStart: string,
   noteEnd: string
-}
+};
+
+export type EditNote = {
+  category: string,
+  name: string,
+  content: string,
+  dates: string[]
+};

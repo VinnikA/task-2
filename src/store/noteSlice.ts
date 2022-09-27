@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NoteState } from "../types";
+import { NoteState, EditNote } from "../types";
 import { notes } from "../constants";
 
 const initialState: NoteState = {
@@ -29,16 +29,18 @@ const noteSlice = createSlice({
     showEditForm(state, action: PayloadAction<number>) {
       state.editForm = true;
       state.editetNoteId = action.payload;
-      console.log(action.payload);
     },
     hideEditForm(state) {
       state.editetNoteId = 0;
       state.editForm = false;
     },
-    editNote(state, action: PayloadAction<[]>) {
+    editNote(state, action: PayloadAction<EditNote>) {
       const note = state.list.find(item => item.id === state.editetNoteId);
       if(note) {
-        console.log(action.payload);
+        note.category = action.payload.category;
+        note.name = action.payload.name;
+        note.content = action.payload.content;
+        note.dates = action.payload.dates;
       }
     },
     archiveNote(state, action: PayloadAction<number>) {
