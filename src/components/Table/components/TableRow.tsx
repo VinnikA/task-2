@@ -49,7 +49,7 @@ const TableRow: React.FC<TableRowType> = ({position, note}) => {
       </div>
       {
         (keys as (keyof typeof note)[]).slice(1).map((key) => 
-        <TableItem key={key} content={note[key]} category={cat} />)
+        <TableItem key={key} content={note[key]} />)
       }
       {position === 'top' && <div className="table__item">
         <IconBtnBlock namesAndActions={rowButtons}/>

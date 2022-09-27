@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { TableHeaderProps } from "../../../types";
+import { SingleStringProps } from "../../../types";
 import { topTableTitles, bottomTableTitles } from "../../../constants";
 import IconBtnBlock from "../../UI/IconBtnBlock";
 import { toggleViev, removeAll } from "../../../store/noteSlice";
 
-const TableHeader: React.FC<TableHeaderProps> = ({position}) => {
+const TableHeader: React.FC<SingleStringProps> = ({position}) => {
 
   const dispatch = useAppDispatch();
   const showHide = useAppSelector(state => state.notes.showArchived);
@@ -20,7 +20,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({position}) => {
 
   const removeAllNotes = () => {
     dispatch(removeAll());
-  }
+  };
 
   const btnName = showHide ? 'unarchive' : 'archive';
 

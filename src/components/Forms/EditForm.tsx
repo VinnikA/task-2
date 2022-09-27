@@ -53,10 +53,9 @@ const EditForms = () => {
         <h2 className="form__heading">Edit the note</h2>
         <label className="form__label">Category: 
           <select 
-            className="form__input" 
-            {...register('noteCategory')} 
-          >
-            {categories.map(item => <option key={item} value={item}>{item}</option>)}
+            className="form__input" {...register('noteCategory')} >
+            {categories.map(item => 
+              <option key={item} value={item}>{item}</option>)}
           </select>
         </label>
         <label className="form__label">Name: 

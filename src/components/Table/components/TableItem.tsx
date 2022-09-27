@@ -1,7 +1,7 @@
 import { TableItemType } from "../../../types";
 import { getString } from "../../../helpers";
 
-const TableItem: React.FC<TableItemType> = ({content, category, icon}) => {
+const TableItem: React.FC<TableItemType> = ({content}) => {
   return (
     <div className="table__item">
       <div className="table__content">

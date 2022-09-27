@@ -1,6 +1,6 @@
-export type TableHeaderProps = {
+export type SingleStringProps = {
   position: string
-}
+};
 
 export type NameProps = {
   name: string | number | boolean
@@ -29,10 +29,6 @@ export type summryType = {
   name: string,
   active: number,
   archived: number
-}
-
-export type TableBodyType = {
-  position: string
 };
 
 export type TableRowType = {
@@ -42,9 +38,7 @@ export type TableRowType = {
 }
 
 export type TableItemType = {
-  content: number | string | string[] | boolean,
-  category?: string | number | boolean,
-  icon?: boolean
+  content: number | string | string[] | boolean
 };
 
 export type NoteState = {

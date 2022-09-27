@@ -1,14 +1,13 @@
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { SingleStringProps } from "../../types";
+import { useAppDispatch } from "../../hooks";
 import { showAddForm } from "../../store/noteSlice";
 import TableBody from "./components/TableBody";
 import TableHeader from "./components/TableHeader";
 import BtnBlock from "../UI/BtnBlock";
 
-type TableProps = {
-  position: string
-}
 
-const Table: React.FC<TableProps> = ({position}) => {
+
+const Table: React.FC<SingleStringProps> = ({position}) => {
 
   const dispatch = useAppDispatch();
 

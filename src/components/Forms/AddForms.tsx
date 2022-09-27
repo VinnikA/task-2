@@ -23,7 +23,6 @@ const AddForms = () => {
       archived: false
     };
     dispatch(addNote(newNote));
-    console.log(newNote);
   });
 
   const onCancel = (e?: React.SyntheticEvent) => {
@@ -44,7 +43,8 @@ const AddForms = () => {
         <h2 className="form__heading">Add a new note</h2>
         <label className="form__label">Category: 
           <select className="form__input" {...register('noteCategory')}>
-            {categories.map(item => <option key={item} value={item}>{item}</option>)}
+            {categories.map(item => 
+              <option key={item} value={item}>{item}</option>)}
           </select>
         </label>
         <label className="form__label">Name: 
