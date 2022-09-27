@@ -1,16 +1,32 @@
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { TableHeaderProps } from "../../../types";
 import { topTableTitles, bottomTableTitles } from "../../../constants";
 import IconBtnBlock from "../../UI/IconBtnBlock";
-
-type TableHeaderProps = {
-  position: string
-}
+import { toggleViev, removeAll } from "../../../store/noteSlice";
 
 const TableHeader: React.FC<TableHeaderProps> = ({position}) => {
+
+  const dispatch = useAppDispatch();
+  const showHide = useAppSelector(state => state.notes.showArchived);
+
   const styleMod = `table__header table__header_${position}`;
-  const notes = position === 'top' ? topTableTitles : bottomTableTitles;
+  const notes = position === 'top' 
+    ? topTableTitles 
+    : bottomTableTitles;
+  
+  const showHideArchived = () => {
+    dispatch(toggleViev());
+  };
+
+  const removeAllNotes = () => {
+    dispatch(removeAll());
+  }
+
+  const btnName = showHide ? 'unarchive' : 'archive';
+
   const headerButtons = [
-    {name: 'archive'},
-    {name: 'remove'}
+    {name: btnName, action: showHideArchived},
+    {name: 'remove', action: removeAllNotes}
   ];
 
   return (

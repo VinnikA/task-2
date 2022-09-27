@@ -1,5 +1,6 @@
-import { table } from "console";
-import { type } from "os";
+export type TableHeaderProps = {
+  position: string
+}
 
 export type NameProps = {
   name: string | number | boolean
@@ -7,7 +8,7 @@ export type NameProps = {
 
 export type NameAndActionProps = {
   name: string,
-  action?: () => void
+  action?: (e: React.SyntheticEvent) => void
 };
 
 export type BtnBlockProps = {
@@ -31,9 +32,7 @@ export type summryType = {
 }
 
 export type TableBodyType = {
-  position: string,
-  notes: noteType[] | summryType[],
-  archived: boolean
+  position: string
 };
 
 export type TableRowType = {
@@ -47,3 +46,19 @@ export type TableItemType = {
   category?: string | number | boolean,
   icon?: boolean
 };
+
+export type NoteState = {
+  list: noteType[],
+  showArchived: boolean,
+  editForm: boolean,
+  addForm: boolean,
+  editetNoteId: number
+};
+
+export type FormData = {
+  noteCategory: string,
+  noteName: string,
+  noteContent: string,
+  noteStart: string,
+  noteEnd: string
+}

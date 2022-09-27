@@ -1,12 +1,9 @@
-import Table from "./components/Table/Table";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <Table position="top"/>
-        <Table position="bottom"/>
-      </div>
+      <Layout />
     </div>
   );
 }

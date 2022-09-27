@@ -1,12 +1,17 @@
-import { noteType, TableBodyType } from "../../../types";
-import { categories } from "../../../constants";
+import { TableBodyType } from "../../../types";
+import { useAppSelector } from "../../../hooks";
 import TableRow from "./TableRow";
 import { getActive, getSummary } from "../../../helpers";
 
-const TableBody: React.FC<TableBodyType> = ({position, notes, archived}) => {
+const TableBody: React.FC<TableBodyType> = ({position}) => {
+
+  const notes = useAppSelector(state => state.notes.list);
+  const archived = useAppSelector(state => state.notes.showArchived);
 
   const summary = getSummary(notes);
   const notesByCondition = getActive(notes, 'archived', archived);
+
+  const showMessage = !notesByCondition.length;
 
   return (
     <div className="table">
@@ -16,8 +21,13 @@ const TableBody: React.FC<TableBodyType> = ({position, notes, archived}) => {
             key={item.name}
             position={position}
             note={item}
-            archived={archived}
           />)
+      }
+      {position === 'top' && 
+        showMessage && 
+        <div className="table__message">
+          There are no notes!
+        </div>
       }
       {position === 'bottom' && 
         summary.map(item =>

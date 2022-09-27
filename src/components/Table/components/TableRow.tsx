@@ -1,42 +1,41 @@
 import { TableRowType } from "../../../types";
+import { useAppSelector, useAppDispatch } from "../../../hooks";
 import { topTableTitles, bottomTableTitles } from "../../../constants";
 import TableItem from "./TableItem";
 import Icon from "../../UI/Icon";
 import IconBtnBlock from "../../UI/IconBtnBlock";
+import { archiveNote, removeNote, showEditForm } from "../../../store/noteSlice";
 
-const TableRow: React.FC<TableRowType> = ({position, note, archived}) => {
- 
+const TableRow: React.FC<TableRowType> = ({position, note}) => {
+
+  const dispatch = useAppDispatch();
+
+  const archived = note.archived;
   const styleMod = `table__row table__row_${position}`;
   const keys = position === 'top' 
     ? topTableTitles.map(el => el.toLowerCase()) 
     : bottomTableTitles.map(el => el.toLocaleLowerCase());
-
   const cat = note[('category' as (keyof typeof note))];
   const name = note[('name' as (keyof typeof note))];
+  const id = note[('id' as (keyof typeof note))];
 
-  const edit = () => {
-    console.log('edit');
+  const showEdited = () => {
+    dispatch(showEditForm(id as number));
   };
 
-  const archive = () => {
-    console.log('archive');
-  };
-
-  const unarchive = () => {
-    console.log('unarchive');
+  const toggleArchived = () => {
+    dispatch(archiveNote(id as number)); 
   };
 
   const remove = () => {
-    console.log('remove');
+    dispatch(removeNote(id as number));
   };
 
-  const toggledBtn = archived 
-    ? {name: 'unarchive', action: unarchive} 
-    : {name: 'archive', action: archive};
+  const btnName = archived ? 'unarchive' : 'archive';
 
   const rowButtons = [
-    {name: 'edit', action: edit},
-    toggledBtn,
+    {name: 'edit', action: showEdited},
+    {name: btnName, action: toggleArchived},
     {name: 'remove', action: remove}
   ];
 
